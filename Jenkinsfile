@@ -6,38 +6,28 @@ pipeline {
         TESTING_SERVER = '54.89.222.182'
         PRODUCTION_SERVER = '54.160.189.145'
     }
+
+
     stages {
         stage('Build') {
             steps {
                 echo 'Building Website...'
-                // Install Node.js dependencies
-                sh '''
-                if ! command -v node &> /dev/null
-                then
-                    echo "Node.js not found. Please ensure Node.js is installed on Jenkins agent."
-                    exit 1
-                fi
-
-                if [ -f package.json ]; then
-                    npm install
-                else
-                    npm init -y
-                    npm install selenium-webdriver
-                fi
-                '''
+                // Add build steps here if needed (npm install, etc.)
             }
         }
+
 
         stage('Deploy to Testing') {
             steps {
                 echo 'Deploying to Testing Server...'
-                // Already deployed
-                // sh """
-                // ssh ec2-user@$TESTING_SERVER "sudo rm -rf /var/www/html/*"
-                // ssh ec2-user@$TESTING_SERVER "git clone $REPO_URL /var/www/html"
-                // """
+               // Already deployed 
+		// sh """
+               // ssh ec2-user@$TESTING_SERVER "sudo rm -rf /var/www/html/*"
+               // ssh ec2-user@$TESTING_SERVER "git clone $REPO_URL /var/www/html"
+               // """
             }
         }
+
 
         stage('Run Selenium Tests') {
             steps {
@@ -52,6 +42,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Deploy to Production') {
             when {

@@ -1,0 +1,55 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe5e5; /* light red background */
+    color: #b30000; /* dark red text */
+    padding: 20px;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    color: #ff0000;
+}
+
+/* Form styling */
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #ff4d4d;
+    border-radius: 10px;
+    background-color: #fff0f0;
+}
+
+/* Labels and inputs */
+label {
+    display: block;
+    margin-top: 10px;
+    color: #cc0000;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ff6666;
+    border-radius: 5px;
+}
+
+/* Button styling */
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: #ff3333;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cc0000;
+}

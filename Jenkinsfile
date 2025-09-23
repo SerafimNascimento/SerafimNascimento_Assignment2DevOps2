@@ -45,19 +45,24 @@ pipeline {
 
 
         stage('Deploy to Production') {
-            when {
+          when {
                 expression {
-                    def result = readFile(env.TEST_RESULT_FILE).trim()
-                    return result == 'true'
+                def result = readFile(env.TEST_RESULT_FILE).trim()
+                return result == 'true'
                 }
-            }
-            steps {
+                }
+                steps {
                 echo 'Deploying to Production Server...'
                 sh """
-                ssh ec2-user@$PRODUCTION_SERVER "sudo rm -rf /var/www/html/*"
-                ssh ec2-user@$PRODUCTION_SERVER "git clone $REPO_URL /var/www/html"
+                ssh -i /home/ec2-user/localkey.pem -o StrictHostKeyChecking=no ec2-user@$PRODUCTION_SERVER \\
+                "sudo yum update -y && \\
+                sudo yum install -y git && \\
+                sudo rm -rf /var/www/html/* && \\
+                sudo mkdir -p /var/www/html && \\
+                sudo chown ec2-user:ec2-user /var/www/html && \\
+                git clone $REPO_URL /var/www/html"
                 """
-            }
+                }
         }
     }
 }

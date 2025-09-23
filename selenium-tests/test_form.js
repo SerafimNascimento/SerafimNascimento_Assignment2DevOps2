@@ -1,4 +1,4 @@
-require('chromedriver'); // new addition
+//require('chromedriver'); // new addition - remove it later
 const {Builder, By, until} = require('selenium-webdriver');
 
 (async function testForm() {
